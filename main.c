@@ -19,6 +19,7 @@
 #include "declaration.h"
 int main()
 {
+	print_tip();
 	char argv[25][256];
 	char *command[25];
 	char cmd[256];
@@ -38,7 +39,10 @@ int main()
 	{
 		//char* parameter[] = {"ls",0};
 		printf("child process running\n");
-		execvp(command[0],command);
+		if (search_cmd(command))
+		  execvp(command[0],command);
+		else
+		  printf("未找到命令:%s\n",command[0]);
 	}
 	else
 	{

@@ -26,6 +26,8 @@
 #include <fcntl.h>
 #include <dirent.h>
 
+void print_tip();//输出shell名
 void input_cmd(char cmd[]);//获取命令函数
-void get_cmd(char cmd[],char command[25][256]);//解析命令函数,解析后存在command里面
-void executive_cmd(char* command[]);//执行获取的命令,
+void get_cmd(char cmd[],char command[256][256]);//解析命令函数,解析后存在command里面
+int search_cmd(char* command[256]);//查找命令函数
+void executive_cmd(char* command[256]);//执行获取的命令
