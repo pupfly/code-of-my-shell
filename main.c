@@ -19,21 +19,29 @@
 #include "declaration.h"
 int main()
 {
-	print_tip();
-	char argv[25][256];
-	char *command[25];
-	char cmd[256];
-	int i=0;
-	input_cmd(cmd);
-	puts(cmd);
-	get_cmd(cmd,argv);
-	
-	while (argv[i++][0] != '\0' && i < 25)
+	int order = 1;
+	while (1)
 	{
-	  command[i-1] = (char *)argv[i-1];
+	  char *command[256];
+	  char cmd[256];
+	  while(order == 1)
+	  {
+	    print_tip();
+	    input_cmd(cmd,&order);
+	  }
+	  get_cmd(cmd,command);
+	  if (strcmp(command[0],"exit") == 0 || strcmp(command[0],"logout") == 0)
+	  {
+	    break;
+	  }
+	 // execvp(command[0],command);
+	  executive_cmd(command);
+	  //input_cmd(cmd);
+	  //get_cmd(cmd,command);
+	  destroy_cmd(command);
+	  order = 1;
 	}
-	command[i] = NULL;
-	pid_t pid;
+	/*pid_t pid;
 	pid = fork();
 	if (pid == 0)
 	{
@@ -48,6 +56,6 @@ int main()
 	{
 		wait(&i);
 		printf("main function run here\n");
-	}
+	}*/
 }
 
