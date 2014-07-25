@@ -34,28 +34,9 @@ int main()
 	  {
 	    break;
 	  }
-	 // execvp(command[0],command);
 	  executive_cmd(command);
-	  //input_cmd(cmd);
-	  //get_cmd(cmd,command);
 	  destroy_cmd(command);
 	  order = 1;
 	}
-	/*pid_t pid;
-	pid = fork();
-	if (pid == 0)
-	{
-		//char* parameter[] = {"ls",0};
-		printf("child process running\n");
-		if (search_cmd(command))
-		  execvp(command[0],command);
-		else
-		  printf("未找到命令:%s\n",command[0]);
-	}
-	else
-	{
-		wait(&i);
-		printf("main function run here\n");
-	}*/
 }
 

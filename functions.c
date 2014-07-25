@@ -130,7 +130,6 @@ int search_cmd(char* command[256])//查找命令函数
     {
       filename[i-2]=command[0][i];
     }
-    puts(filename);
     if ((dir = opendir("./")) == NULL)
     {
       perror("opendir");
@@ -300,20 +299,14 @@ void executive_cmd(char* command[256])//执行获取的命令
 		exit(0);
 	   }
 	   while (command[i++][0] != '|');
-	   t1 = i - 1;
-	   t2 = i;
-	  if (command[i - 1][1] != '\0')//命令合适则提取和分离命令
+	   t1 = i - 1;//记录管道符"|"位置
+	   t2 = i;//记录管道命令位置
+	  if (command[i - 1][1] != '\0' && pid2 == 0)//不支持管道命令符与管道命令相连
 	   {
 	     printf("命令格式错误\n");
-	     exit(0);
+	     _exit(0);
 	  }
-	  /*command[t] = NULL;
-	  t = 0;
-	  while(command[t] != NULL)
-	    puts(command[t++]);
-	  t = 0;
-	  while (cmd[t] != NULL)
-	    puts(cmd[t]);*/
+	 
 	  if (pid2 == 0)
 	  {
 	      command[t1] = NULL;
