@@ -19,7 +19,7 @@
 #include "declaration.h"
 int main()
 {
-	int order = 1;
+	int order = 1;//如果输入命令为空,以此数标志状态让用户继续输入
 	while (1)
 	{
 	  char *command[256];
